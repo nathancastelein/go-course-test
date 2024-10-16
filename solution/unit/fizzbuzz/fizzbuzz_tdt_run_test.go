@@ -34,15 +34,13 @@ func TestFizzBuzzWithTableDrivenTestAndParallelism(t *testing.T) {
 
 	// Act
 	for name, test := range tests {
-		currentTest := test
-		currentName := name
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()
-			result := fizzbuzz.LongFizzbuzz(currentTest.input)
+			result := fizzbuzz.LongFizzbuzz(test.input)
 
 			// Assert
-			if result != currentTest.expected {
-				t.Fatalf("%s failed, expected %s, got %s", currentName, currentTest.expected, result)
+			if result != test.expected {
+				t.Fatalf("%s failed, expected %s, got %s", name, test.expected, result)
 			}
 		})
 	}
